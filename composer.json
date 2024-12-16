@@ -1,0 +1,18 @@
+{
+    "name": "linxi/pulsar-client",
+    "autoload": {
+        "psr-4": {
+            "Linxi\\PulsarClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "zhangguofu",
+            "email": "zhangguofu@douyuxingchen.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "ikilobyte/pulsar-client-php": "^1.3"
+    }
+}
