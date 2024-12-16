@@ -17,7 +17,10 @@ class PulsarProducerProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/pulsar.php' => config_path('pulsar.php')
+            __DIR__ . '/config/pulsar.php' => config_path('pulsar.php'),
+            __DIR__ . '/PulsarTask/PulsarTaskDemo.php' => app_path('PulsarTask/PulsarTaskDemo.php'),
+            __DIR__ . '/PulsarTask/PulsarConsumerTask.php' => app_path('PulsarTask/PulsarConsumerTask.php')
+
         ]);
 
     }

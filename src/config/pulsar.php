@@ -37,9 +37,9 @@ return [
     ],
     'tasks' => [
         //task_name
-        'pulsar_test_task' => [
+        'pulsar_task_demo' => [
             'topic_server' => 'default',
-            'task_process_class' => '\App\Pulsar\PulsarTest::class',
+            'task_process_class' => \App\PulsarTask\PulsarTaskDemo::class,
         ]
     ]
 
