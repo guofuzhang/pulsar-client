@@ -13,7 +13,7 @@ class PulsarProducerFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'pulsar.producer';
+        return 'pulsar_producer';
     }
 
     /**
@@ -29,6 +29,6 @@ class PulsarProducerFacade extends Facade
             throw new \Exception('payload must be string or array');
         }
 
-        return self::$app['pulsar.producer']->send($payload, $options);
+        return self::$app['pulsar_producer']->send($payload, $options);
     }
 }
