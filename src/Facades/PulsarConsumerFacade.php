@@ -17,6 +17,6 @@ class PulsarConsumerFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'pulsar_producer';
+        return 'pulsar_consumer';
     }
 }
