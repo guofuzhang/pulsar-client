@@ -14,35 +14,45 @@ use Pulsar\ProducerOptions;
 class PulsarProducer
 {
     protected $config;
-    protected $producers;
+    protected $producers;//connections
 
     public function __construct(Config $config)
     {
         $this->config = $config;
     }
 
+    /**
+     * @throws OptionsException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public function __call($method, $parameters)
     {
         return call_user_func_array([$this->setTopicServer(), $method], $parameters);
     }
 
+
     /**
-     * @param $connectionName
+     * Desc:返回一个生产者连接
+     * User: zhangguofu@douyuxingchen.com
+     * Date: 2024/12/17 14:37
+     * @param string $connectionName
      * @return mixed|Producer
      * @throws IOException
      * @throws OptionsException
      * @throws RuntimeException
      */
-    public function setTopicServer($connectionName = 'default')
+    public function setTopicServer(string $connectionName = 'default')
     {
+        if (!$this->config->get("pulsar.topic_servers.$connectionName")) {
+            throw new InvalidArgumentException("Invalid Pulsar connection: $connectionName");
+        }
+
         if (!empty($this->producers[$connectionName])) {
             return $this->producers[$connectionName];
         }
-        if (!$this->config->get("pulsar.topic_servers.{$connectionName}")) {
-            throw new InvalidArgumentException("Invalid Pulsar connection: {$connectionName}");
-        }
 
-        $topicConfig = $this->config->get("pulsar.topic_servers.{$connectionName}");
+        $topicConfig = $this->config->get("pulsar.topic_servers.$connectionName");
         $serverOption = $this->config->get("pulsar.connections.{$topicConfig['connection']}");
         $topicOption = $this->config->get("pulsar.topics.{$topicConfig['topic']}");
 
@@ -55,7 +65,6 @@ class PulsarProducer
         $this->producers[$connectionName] = $producer;
         return $producer;
     }
-
     protected function __clone()
     {
 

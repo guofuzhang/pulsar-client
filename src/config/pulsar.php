@@ -23,10 +23,8 @@ return [
             'nack_redelivery_delay' => env('PULSAR_SET_NACK_REDELIVERY_DELAY', 5),
             'dead_letter_policy' => [
                 'max_redeliver_count' => env('PULSAR_MAX_REDELIVER_COUNT', 3),
-                'dead_letter_topic' => env('PULSAR_DEAD_LETTER_TOPIC', 'persistent://public/test/test_dead')
             ],
         ],
-
     ],
 
     'topic_servers' => [

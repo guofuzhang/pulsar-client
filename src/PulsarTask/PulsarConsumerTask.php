@@ -3,7 +3,7 @@
 namespace Linxi\PulsarClient\PulsarTask;
 
 use Illuminate\Console\Command;
-use Linxi\PulsarClient\Facades\PulsarConsumer;
+use Linxi\PulsarClient\Facades\PulsarConsumerFacade;
 
 class PulsarConsumerTask extends Command
 {
@@ -41,7 +41,7 @@ class PulsarConsumerTask extends Command
         $taskName = $this->argument('taskName');
         $pulsarTaskConfig = config('pulsar.tasks');
         $taskConfig = $pulsarTaskConfig[$taskName];
-        $consumer = PulsarConsumer::setTopicServer($taskConfig['topic_server']);
+        $consumer = PulsarConsumerFacade::setTopicServer($taskConfig['topic_server']);
         while (true) {
             $message = $consumer->receive();
             $taskProcessClass = $taskConfig['task_process_class'];
