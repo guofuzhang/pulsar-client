@@ -10,7 +10,7 @@ use Pulsar\Message;
  * @method static batchReceive(bool $loop = true): array
  * @method static ack(Message $message)
  * @method static nack(Message $message)
- * @method static setTopicServer($topicServer,)
+ * @method static setTopicServer( $connectionName = 'default', $subscriber='', $isDeadLetter=false)
  * @method static setTopic()
  */
 class PulsarConsumerFacade extends Facade

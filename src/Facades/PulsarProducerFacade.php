@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @version V1.0
- * @method static setTopicServer($topicServer,$deadLetter)
+ * @method static setTopicServer($topicServer)
  * @method static sendAsync(string $payload, callable $callable, array $options = [])
  */
 class PulsarProducerFacade extends Facade
