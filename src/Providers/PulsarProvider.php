@@ -18,7 +18,7 @@ class PulsarProvider extends ServiceProvider
         $this->app->singleton('pulsar_producer', function ($app) {
             return new PulsarProducer($app['config']);
         });
-        $this->app->alias('pulsar_producer', PulsarConsumerFacade::class);
+        $this->app->alias('pulsar_consumer', PulsarConsumerFacade::class);
         $this->app->alias('pulsar_producer', PulsarProducerFacade::class);
     }
 
